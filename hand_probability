@@ -1,0 +1,73 @@
+import cv2
+import numpy as np
+
+
+def make_color_mask(frame):
+    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+    green = ([0,10,10], [20,255,255])
+    mask_green = cv2.inRange(hsv, np.array(green[0]), np.array(green[1]))
+    mask = cv2.bitwise_and(frame, frame, mask=mask_green)
+
+    return mask
+
+
+def make_movement_background_mask(frame, background):
+    return cv2.bitwise_and(frame, frame, mask=background)
+
+
+def detect_mariooooow(frame, background):
+
+    background = cv2.cvtColor(background, cv2.COLOR_BGR2GRAY)
+    thresh = cv2.threshold(background, 10, 255, 1)[1]
+    contours = cv2.findContours(background, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)[0]
+
+    liste = [cv2.boundingRect(cnt) for cnt in contours if cv2.contourArea(cnt) > 5]
+
+    for i in liste:
+        cv2.rectangle(frame, (i[0], i[1]), (i[0] + i[2], i[1] + i[3]), (50, 50, 255), 3)
+
+    return liste
+
+
+
+
+
+def found_next_pixel(liste, movement_detected):
+    pass
+
+
+
+
+video = cv2.VideoCapture("marioooooow.mp4")
+fgbg = cv2.createBackgroundSubtractorMOG2(history=1, detectShadows=False)
+
+movement_detected = []
+
+
+while True:
+    frame = cv2.resize(video.read()[1], (300, 200))
+    frame = frame[0:180, 0:300]
+
+    #Marron mask
+    background_color = make_color_mask(frame)
+
+    #Movement mask
+    background = fgbg.apply(frame)
+    background = make_movement_background_mask(background_color, background)
+
+    #Contours detected
+    detections = detect_mariooooow(frame, background)
+
+    found_next_pixel(liste, movement_detected)
+
+    cv2.imshow('frame', frame)
+
+
+
+
+
+    if cv2.waitKey(1) & 0xFF == ord("q"):
+        break
+
+cv2.video.release()
+cv2.destroyAllWindows()
