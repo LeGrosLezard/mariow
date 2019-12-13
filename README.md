@@ -8,4 +8,6 @@
 
 - soit au bout de 50 % cumulés ont propose les prochains mouvements
 
+- et on fait ca a chaque fois qu'il fait un mouvement
+
 - chai pas si ca veut dire un truk mais c'est classe
