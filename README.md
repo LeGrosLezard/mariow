@@ -10,4 +10,4 @@
 
 - et on fait ca a chaque fois qu'il fait un mouvement
 
-- chai pas si ca veut dire un truk mais c'est classe
+- chai pas si ca veut dire un truk mais c'est classe j'ai essayé de caser fréquence conditonelle...
