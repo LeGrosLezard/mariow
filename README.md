@@ -1,3 +1,11 @@
 # mariow
 
-on récupere les mouvements dans un txt, et au bout d'un moment, on met sur pause et on dit selon ses 5 premiers deplacement la suite acvec une petite phrase (tester avec cuda tf gpu quand meme avant pcque ca m'a l'air dur ^^)
+- récupérer dans un txt pendant quelques passages
+
+- ensuite on fait un tableau du genre : mouvement A [xi... xn] total 20 %
+
+- le mec fait 1 mouvements on récup que les mouvements avec ce mouvement ainsi de suite jusqu'a soit tout éliminer juste un
+
+- soit au bout de 50 % cumulés ont propose les prochains mouvements
+
+- chai pas si ca veut dire un truk mais c'est classe
